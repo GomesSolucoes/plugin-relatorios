@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class UtilRelatorios {
 
     constructor() { }
@@ -29,7 +29,7 @@ export class UtilRelatorios {
             let r = Math.random() * 255;
             let g = Math.random() * 255;
             let b = Math.random() * 255;
-            listaCores.push('rgba('+Number(r).toFixed(0)+', '+Number(g).toFixed(0)+', '+Number(b).toFixed(0)+', 0.7)');
+            listaCores.push('rgba(' + Number(r).toFixed(0) + ', ' + Number(g).toFixed(0) + ', ' + Number(b).toFixed(0) + ', 0.7)');
         }
         return listaCores;
     }

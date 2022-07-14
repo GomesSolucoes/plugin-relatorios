@@ -1,0 +1,140 @@
+<div class="card">
+  <div class="card-header card-header-danger">
+    <h4 class="card-title">
+      {{
+        this.mensagensPTBRRelatorios.mensagens.label
+          .tituloRelatorioFechamentoLivroCaixaSemanal
+      }}
+    </h4>
+    <p class="card-category">
+      {{
+        this.mensagensPTBRRelatorios.mensagens.label.tituloRelatorioFechamentoLivroCaixaSemanalDescricao.replace(
+          this.utilCore.utilConstants.REPLACE.DIAS,
+          this.quantidadeDiasParaConsultarFechamentoLivroCaixa
+        )
+      }}
+    </p>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="filtroFechamentoLivroCaixaForm">
+      <hr />
+      <div class="row mt-2">
+        <div class="col-12 d-flex justify-content-center">
+          {{ this.mensagensPTBRRelatorios.mensagens.label.escolhaTipoGrafico }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <button
+            mat-button
+            class="btn btn-danger"
+            (click)="
+              gerarGraficoFechamentoLivroCaixa(
+                this.utilConstantesRelatorios.TIPO_GRAFICO.BARRAS
+              )
+            "
+          >
+            Barras
+          </button>
+          <button
+            mat-button
+            class="btn btn-danger"
+            (click)="
+              gerarGraficoFechamentoLivroCaixa(
+                this.utilConstantesRelatorios.TIPO_GRAFICO.DOUGHNUT
+              )
+            "
+          >
+            Doughnut
+          </button>
+          <button
+            mat-button
+            class="btn btn-danger"
+            (click)="
+              gerarGraficoFechamentoLivroCaixa(
+                this.utilConstantesRelatorios.TIPO_GRAFICO.LINE
+              )
+            "
+          >
+            Linhas
+          </button>
+          <button
+            mat-button
+            class="btn btn-danger"
+            (click)="
+              gerarGraficoFechamentoLivroCaixa(
+                this.utilConstantesRelatorios.TIPO_GRAFICO.PIZZA
+              )
+            "
+          >
+            Pizza
+          </button>
+        </div>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          {{ this.mensagensPTBRRelatorios.mensagens.label.filtrarPorData }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 d-flex justify-content-center">
+          <mat-form-field>
+            <mat-label>{{
+              this.utilCore.mensagensPTBRCore.mensagens.input.dataInicio
+            }}</mat-label>
+            <input
+              formControlName="dataInicio"
+              matInput
+              [matDatepicker]="pickerInicial"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerInicial"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicial></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="col-6 d-flex justify-content-center">
+          <mat-form-field>
+            <mat-label>{{
+              this.utilCore.mensagensPTBRCore.mensagens.input.dataFinal
+            }}</mat-label>
+            <input
+              formControlName="dataFinal"
+              matInput
+              [matDatepicker]="pickerFinal"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="pickerFinal"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #pickerFinal></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+          <button
+            class="btn btn-danger"
+            (click)="verificarQuantidadeDiasDiferencaDatas()"
+            style="margin-top: 1rem"
+          >
+            {{ this.utilCore.mensagensPTBRCore.mensagens.botoes.filtrar }}
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="limparFiltroGraficoFechamentoLivroCaixa()"
+            style="margin-top: 1rem"
+          >
+            {{ this.utilCore.mensagensPTBRCore.mensagens.botoes.limparFiltro }}
+          </button>
+        </div>
+      </div>
+    </form>
+    <div id="divChart">
+      <canvas id="myChart"></canvas>
+    </div>
+  </div>
+</div>

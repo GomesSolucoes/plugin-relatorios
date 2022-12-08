@@ -1,7 +1,8 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { UtilCore } from "app/plugins/plugin-core/plugin-core-frontend/src/app/util/utilCore";
-import { Configuration } from "app/plugins/root/configuration/ambient/Configuration";
+import { UtilCore } from "app/plugins/plugin-core/plugin-core-frontend/src/app/util/util-core";
+import { environment } from "environments/environment";
+
 import { ServiceInterfaceRelatorios } from "./ServiceInterfaceRelatorios";
 
 @Injectable({
@@ -9,14 +10,13 @@ import { ServiceInterfaceRelatorios } from "./ServiceInterfaceRelatorios";
 })
 export class ServiceConfigRelatorios {
   constructor(
-    public utilCore: UtilCore,
-    public configuration: Configuration
+    public utilCore: UtilCore
   ) { }
 
   public serviceInterfaceFinanceiro: ServiceInterfaceRelatorios = {
     consultarfechamentoLivroCaixaSemanal: {
       endPoint:
-        this.configuration.ambient.endPoint +
+      environment.url + +
         "/graficos/fechamentoLivroCaixaSemanal",
       method: this.utilCore.utilConstants.ID_TIPO.REQUEST.GET,
       headers: new HttpHeaders().append("Access-Control-Allow-Origin", "*"),
@@ -25,7 +25,7 @@ export class ServiceConfigRelatorios {
     },
     consultarfechamentoLivroCaixaByFiltro: {
       endPoint:
-        this.configuration.ambient.endPoint +
+      environment.url + +
         "/graficos/fechamentoLivroCaixaByFiltro",
       method: this.utilCore.utilConstants.ID_TIPO.REQUEST.GET,
       headers: new HttpHeaders().append("Access-Control-Allow-Origin", "*"),

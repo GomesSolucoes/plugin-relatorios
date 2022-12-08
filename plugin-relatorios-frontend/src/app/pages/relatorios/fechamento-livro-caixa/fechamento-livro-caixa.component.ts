@@ -8,7 +8,7 @@ import { MensagensPTBRRelatorios } from '../../../i18n/MensagensPTBRRelatorios';
 import { FechamentoLivroCaixa } from '../../../interface/ListaFechamentoLivroCaixa';
 import { ServiceConfigRelatorios } from '../../../service/ServiceConfigRelatorios';
 import { UtilConstantesRelatorios } from '../../../util/util-constantes-relatorios';
-import { UtilCore } from '../../../../../../../../../app/plugins/plugin-core/plugin-core-frontend/src/app/util/utilCore';
+import { UtilCore } from '../../../../../../../plugin-core/plugin-core-frontend/src/app/util/util-core';
 import { UtilRelatorios } from '../../../util/util-relatorio';
 
 @Component({

@@ -1,8 +1,7 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { UtilCore } from "app/plugins/plugin-core/plugin-core-frontend/src/app/util/util-core";
 import { environment } from "environments/environment";
-
+import { UtilCore } from "plugins/plugin-core/plugin-core-frontend/src/app/util/util-core";
 import { ServiceInterfaceRelatorios } from "./ServiceInterfaceRelatorios";
 
 @Injectable({
@@ -16,7 +15,7 @@ export class ServiceConfigRelatorios {
   public serviceInterfaceFinanceiro: ServiceInterfaceRelatorios = {
     consultarfechamentoLivroCaixaSemanal: {
       endPoint:
-      environment.url + +
+      environment.env + 
         "/graficos/fechamentoLivroCaixaSemanal",
       method: this.utilCore.utilConstants.ID_TIPO.REQUEST.GET,
       headers: new HttpHeaders().append("Access-Control-Allow-Origin", "*"),
@@ -25,7 +24,7 @@ export class ServiceConfigRelatorios {
     },
     consultarfechamentoLivroCaixaByFiltro: {
       endPoint:
-      environment.url + +
+      environment.env + 
         "/graficos/fechamentoLivroCaixaByFiltro",
       method: this.utilCore.utilConstants.ID_TIPO.REQUEST.GET,
       headers: new HttpHeaders().append("Access-Control-Allow-Origin", "*"),

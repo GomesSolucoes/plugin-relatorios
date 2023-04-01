@@ -10,6 +10,7 @@ import * as Chart from "chart.js";
 import { MensagensPTBRCore } from "plugins/plugin-core/plugin-core-frontend/src/app/i18n/MensagensPTBRCore";
 import { ServiceConfigCore } from "plugins/plugin-core/plugin-core-frontend/src/app/service/ServiceConfigCore";
 import { MensagensPTBRFinanceiro } from "plugins/plugin-financeiro/plugin-financeiro-frontend/src/app/i18n/MensagensPTBRFinanceiro";
+import { ID_TIPO, SESSAO, REPLACE } from "plugins/plugin-core/plugin-core-frontend/src/app/util/util-constants";
 
 @Component({
   selector: "app-fechamento-livro-caixa",
@@ -32,6 +33,7 @@ export class FechamentoLivroCaixaComponent implements OnInit {
   public valoresFechamento = [];
   public typeGraph: string;
   public quantidadeDiasParaConsultarFechamentoLivroCaixa: any = 0;
+  public REPLACE;
 
   public filtroFechamentoLivroCaixaForm = new FormGroup({
     dataInicio: new FormControl(
@@ -44,6 +46,8 @@ export class FechamentoLivroCaixaComponent implements OnInit {
     ),
   });
   ngOnInit(): void {
+    this.REPLACE = REPLACE;
+
     this.consultarQuantidadeDiasParaConsultarFechamentoLivroCaixa();
     this.consultarfechamentoLivroCaixaSemanal();
   }
@@ -87,7 +91,7 @@ export class FechamentoLivroCaixaComponent implements OnInit {
   consultarQuantidadeDiasParaConsultarFechamentoLivroCaixa() {
     this.serviceConfigCore.serviceInterfaceCore.consultarValorParametroById.urlParam =
       "?idParametro=" +
-      this.utilCore.utilConstants.ID_TIPO.PARAMETRO
+      ID_TIPO.PARAMETRO
         .QUANTIDADE_DIAS_CONSULTAR_FECHAMENTO_LIVRO_CAIXA;
     this.utilCore.utilService
       .service(
@@ -101,7 +105,7 @@ export class FechamentoLivroCaixaComponent implements OnInit {
         this.utilCore.utilMensagens.mostrarMensagemAlerta(
           this.mensagensPTBRCore.mensagens.label.error
             .erroAoConsultarParametro +
-            this.utilCore.utilConstants.ID_TIPO.PARAMETRO
+            ID_TIPO.PARAMETRO
               .QUANTIDADE_DIAS_CONSULTAR_FECHAMENTO_LIVRO_CAIXA
         );
       });
@@ -123,7 +127,7 @@ export class FechamentoLivroCaixaComponent implements OnInit {
       "&dataInicial=" +
       dataInicial +
       "&numeroDocumentoCNPJ=" +
-      localStorage.getItem(this.utilCore.utilConstants.SESSAO.CNPJEMPRESA);
+      localStorage.getItem(SESSAO.CNPJEMPRESA);
 
     this.utilCore.utilService
       .service(
@@ -156,7 +160,7 @@ export class FechamentoLivroCaixaComponent implements OnInit {
   consultarfechamentoLivroCaixaSemanal() {
     this.serviceConfigRelatorios.serviceInterfaceFinanceiro.consultarfechamentoLivroCaixaSemanal.urlParam =
       "?numeroDocumentoCNPJ=" +
-      localStorage.getItem(this.utilCore.utilConstants.SESSAO.CNPJEMPRESA);
+      localStorage.getItem(SESSAO.CNPJEMPRESA);
 
     this.utilCore.utilService
       .service(

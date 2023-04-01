@@ -1,6 +1,5 @@
 package com.grupotfp.pluginrelatorios.service.graficos.impl;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.grupotfp.plugincore.domain.MestreEmpresaEntity;
 import com.grupotfp.plugincore.repository.MestreEmpresaRepository;
+import com.grupotfp.plugincore.services.exception.impl.ExceptionServiceImpl;
 import com.grupotfp.plugincore.util.corefuncoes.CoreFuncoes;
 import com.grupotfp.pluginfinanceiro.repository.MestreFinanceiroCaixaRepository;
 import com.grupotfp.pluginfinanceiro.util.dto.FechamentoLivroCaixaByFiltroDto;
@@ -63,7 +63,7 @@ public class GraficosManagerImpl implements GraficosManager {
 
 			listaFechamentoLivroCaixaByFiltroDto = mestreFinanceiroCaixaRepository
 					.consultarFechamentoLivroCaixaByFiltro(dataInicio, dataFim, mestreEmpresaEntity.getIdEmpresa());
-		} catch (ParseException e) {
+		} catch (ExceptionServiceImpl e) {
 
 			e.printStackTrace();
 		}

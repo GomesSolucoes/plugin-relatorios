@@ -8,7 +8,7 @@ import { UtilCore } from "../../../../../../../plugin-core/plugin-core-frontend/
 import { UtilRelatorios } from "../../../util/util-relatorio";
 import * as Chart from "chart.js";
 import { MensagensPTBRCore } from "plugins/plugin-core/plugin-core-frontend/src/app/i18n/MensagensPTBRCore";
-import { ServiceConfigCore } from "plugins/plugin-core/plugin-core-frontend/resource/ServiceConfigCore";
+import { ServiceConfigCore } from "plugins/plugin-core/plugin-core-frontend/src/app/resource/ServiceConfigCore";
 import { MensagensPTBRFinanceiro } from "plugins/plugin-financeiro/plugin-financeiro-frontend/src/app/i18n/MensagensPTBRFinanceiro";
 import { ID_TIPO, SESSAO, REPLACE } from "plugins/plugin-core/plugin-core-frontend/src/app/util/util-constants";
 

@@ -36,8 +36,7 @@ public class GraficosManagerImpl implements GraficosManager {
 	 */
 	@Override
 	public List<FechamentoLivroCaixaDto> fechamentoLivroCaixaSemanal(String numeroDocumentoCNPJ) {
-		MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-				.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+		MestreEmpresaEntity mestreEmpresaEntity = null; //mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 		return mestreFinanceiroCaixaRepository.consultarFechamentoLivroCaixaSemanal(mestreEmpresaEntity.getIdEmpresa());
 	}
 
@@ -55,8 +54,7 @@ public class GraficosManagerImpl implements GraficosManager {
 		List<FechamentoLivroCaixaByFiltroDto> listaFechamentoLivroCaixaByFiltroDto = new ArrayList<>();
 
 		try {
-			MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-					.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+			MestreEmpresaEntity mestreEmpresaEntity = null; //mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 
 			Date dataInicio = coreFuncoes.stringToDate(dataInicial);
 			Date dataFim = coreFuncoes.stringToDate(dataFinal);

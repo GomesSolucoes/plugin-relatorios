@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.grupotfp.plugincore.domain.MestreEmpresaEntity;
 import com.grupotfp.plugincore.repository.MestreEmpresaRepository;
-import com.grupotfp.plugincore.services.exception.impl.ExceptionServiceImpl;
 import com.grupotfp.plugincore.util.corefuncoes.CoreFuncoes;
+import com.grupotfp.plugincore.util.response.exception.core.CoreException;
 import com.grupotfp.pluginfinanceiro.repository.MestreFinanceiroCaixaRepository;
 import com.grupotfp.pluginfinanceiro.util.dto.FechamentoLivroCaixaByFiltroDto;
 import com.grupotfp.pluginfinanceiro.util.dto.FechamentoLivroCaixaDto;
@@ -36,8 +36,7 @@ public class GraficosManagerImpl implements GraficosManager {
 	 */
 	@Override
 	public List<FechamentoLivroCaixaDto> fechamentoLivroCaixaSemanal(String numeroDocumentoCNPJ) {
-		MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-				.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+		MestreEmpresaEntity mestreEmpresaEntity = null; //mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 		return mestreFinanceiroCaixaRepository.consultarFechamentoLivroCaixaSemanal(mestreEmpresaEntity.getIdEmpresa());
 	}
 
@@ -55,15 +54,14 @@ public class GraficosManagerImpl implements GraficosManager {
 		List<FechamentoLivroCaixaByFiltroDto> listaFechamentoLivroCaixaByFiltroDto = new ArrayList<>();
 
 		try {
-			MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-					.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+			MestreEmpresaEntity mestreEmpresaEntity = null; //mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 
 			Date dataInicio = coreFuncoes.stringToDate(dataInicial);
 			Date dataFim = coreFuncoes.stringToDate(dataFinal);
 
 			listaFechamentoLivroCaixaByFiltroDto = mestreFinanceiroCaixaRepository
 					.consultarFechamentoLivroCaixaByFiltro(dataInicio, dataFim, mestreEmpresaEntity.getIdEmpresa());
-		} catch (ExceptionServiceImpl e) {
+		} catch (CoreException e) {
 
 			e.printStackTrace();
 		}

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.grupotfp.plugincore.domain.MestreEmpresaEntity;
 import com.grupotfp.plugincore.repository.MestreEmpresaRepository;
-import com.grupotfp.plugincore.services.exception.impl.ExceptionServiceImpl;
+
 import com.grupotfp.plugincore.util.corefuncoes.CoreFuncoes;
 import com.grupotfp.pluginfinanceiro.repository.MestreFinanceiroCaixaRepository;
 import com.grupotfp.pluginfinanceiro.util.dto.FechamentoLivroCaixaByFiltroDto;
@@ -31,39 +31,34 @@ public class GraficosManagerImpl implements GraficosManager {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.grupotfp.pluginrelatorios.service.graficos.GraficosManager#
-	 * fechamentoLivroCaixaSemanal()
+	 * @see com.grupotfp.pluginrelatorios.service.graficos.GraficosManager# fechamentoLivroCaixaSemanal()
 	 */
 	@Override
 	public List<FechamentoLivroCaixaDto> fechamentoLivroCaixaSemanal(String numeroDocumentoCNPJ) {
-		MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-				.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+		MestreEmpresaEntity mestreEmpresaEntity = null; // mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 		return mestreFinanceiroCaixaRepository.consultarFechamentoLivroCaixaSemanal(mestreEmpresaEntity.getIdEmpresa());
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see com.grupotfp.pluginrelatorios.service.graficos.GraficosManager#
-	 * fechamentoLivroCaixaByFiltro(java.lang.String, java.lang.String,
+	 * @see com.grupotfp.pluginrelatorios.service.graficos.GraficosManager# fechamentoLivroCaixaByFiltro(java.lang.String, java.lang.String,
 	 * java.lang.String)
 	 */
 	@Override
-	public List<FechamentoLivroCaixaByFiltroDto> fechamentoLivroCaixaByFiltro(String numeroDocumentoCNPJ,
-			String dataInicial, String dataFinal) {
+	public List<FechamentoLivroCaixaByFiltroDto> fechamentoLivroCaixaByFiltro(String numeroDocumentoCNPJ, String dataInicial, String dataFinal) {
 
 		List<FechamentoLivroCaixaByFiltroDto> listaFechamentoLivroCaixaByFiltroDto = new ArrayList<>();
 
 		try {
-			MestreEmpresaEntity mestreEmpresaEntity = mestreEmpresaRepository
-					.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
+			MestreEmpresaEntity mestreEmpresaEntity = null; // mestreEmpresaRepository.consultarMestreEmpresaPorNumeroDocumentoCNPJ(numeroDocumentoCNPJ);
 
 			Date dataInicio = coreFuncoes.stringToDate(dataInicial);
 			Date dataFim = coreFuncoes.stringToDate(dataFinal);
 
-			listaFechamentoLivroCaixaByFiltroDto = mestreFinanceiroCaixaRepository
-					.consultarFechamentoLivroCaixaByFiltro(dataInicio, dataFim, mestreEmpresaEntity.getIdEmpresa());
-		} catch (ExceptionServiceImpl e) {
+			listaFechamentoLivroCaixaByFiltroDto = mestreFinanceiroCaixaRepository.consultarFechamentoLivroCaixaByFiltro(dataInicio, dataFim,
+					mestreEmpresaEntity.getIdEmpresa());
+		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
